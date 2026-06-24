@@ -1,36 +1,109 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# NEXOVYTE | Full-Stack Legal Automation & Cloud Business Platform
 
-## Getting Started
+This is the production-ready full-stack web application for **NEXOVYTE** (nexovyte.com) built using Next.js App Router, TypeScript, Tailwind CSS, Framer Motion, and Prisma ORM. It integrates the flagship legal workflow automation platform, **LexFlow™**.
 
-First, run the development server:
+---
+
+## 🚀 Technology Stack Overview
+
+- **Frontend Core**: Next.js + TypeScript + Tailwind CSS (v4)
+- **Animations**: Framer Motion (scroll reveals, sliding tab transitions, responsive canvas flow nets)
+- **Database ORM**: Prisma ORM (v5) supporting PostgreSQL connections
+- **Backend API Routes**: Route Handlers for contacts, job applications, newsletter signups, consultation bookings, and product inquiries
+- **AWS Integrations**: Real-time simulated endpoints for Amazon Bedrock inference, Cognito authorization headers, and S3 file download loaders
+- **Telemetry Charts**: High-fidelity `<canvas>` rendering bezier throughput curves
+
+---
+
+## 📂 Project Architecture
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+nexovyte-app/
+├── prisma/
+│   └── schema.prisma        # PostgreSQL database tables configuration
+├── public/
+│   ├── logo.svg             # Transparent high-contrast branding logo
+│   └── favicon.ico          # Browser tab icon asset
+├── src/
+│   ├── app/
+│   │   ├── api/
+│   │   │   ├── booking/     # Meeting booking POST endpoint
+│   │   │   ├── careers/     # Candidate application POST endpoint
+│   │   │   ├── contact/     # Client contact submission POST endpoint
+│   │   │   ├── newsletter/  # Newsletter subscription POST endpoint
+│   │   │   └── product-inquiry/ # LexFlow demo request POST endpoint
+│   │   ├── about/           # Corporate history & leadership
+│   │   ├── services/        # 10 service profiles (AWS, SaaS, DevOps, legal)
+│   │   ├── lexflow/         # Flagship product sandbox, pricing, and FAQ
+│   │   ├── solutions/       # Custom audience strategies tabs
+│   │   ├── industries/      # Compliance configurations grid (HIPAA, PCI-DSS)
+│   │   ├── case-studies/    # Telemetry simulator & projects
+│   │   ├── resources/       # SDK code snippets selector & S3 progress downloads
+│   │   ├── contact/         # Contact forms & booking calendars
+│   │   ├── thank-you/       # Submission confirmation landing page
+│   │   ├── newsletter-confirm/ # Subscription confirmation landing page
+│   │   ├── privacy/         # Privacy policy terms
+│   │   ├── terms/           # Terms of service terms
+│   │   ├── cookies/         # Cookie policy terms
+│   │   ├── disclaimer/      # Legal disclaimers terms
+│   │   ├── globals.css      # Custom midnight styling configurations
+│   │   ├── layout.tsx       # Root layout skeleton with Navbar & Footer
+│   │   ├── page.tsx         # Responsive corporate homepage
+│   │   ├── sitemap.ts       # Dynamic search engine crawl sitemaps
+│   │   └── robots.ts        # Direct indexing permissions controls
+│   ├── components/
+│   │   ├── Navbar.tsx       # Responsive header with SVG logo
+│   │   ├── Footer.tsx       # Newsletter-hooked footer blocks
+│   │   ├── BackgroundCanvas.tsx # Floating background neural mesh
+│   │   └── AwsArchitecture.tsx # Interactive serverless AWS pipeline
+│   └── lib/
+│       └── db.ts            # Prisma initializer with memory fallbacks
+├── .env.example             # Configuration variables blueprint
+├── package.json
+└── tsconfig.json
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🛠️ Local Development & Setup
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 1. Prerequisite Installations
+- Ensure **Node.js** (v18.x or above) is installed.
+- Ensure **npm** (v10.x or above) is ready.
 
-## Learn More
+### 2. Install Project Dependencies
+Run the installation command:
+```bash
+npm install
+```
 
-To learn more about Next.js, take a look at the following resources:
+### 3. Generate Prisma Clients
+Compile local database models mapping definitions:
+```bash
+npx prisma generate
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 4. Configure Environment Variables
+Copy `.env.example` to `.env` and fill in your actual AWS Credentials and PostgreSQL database URL:
+```bash
+cp .env.example .env
+```
+*(Note: If `DATABASE_URL` is omitted, the application uses local memory-store database fallbacks automatically, ensuring it remains fully operational for staging and demo reviews).*
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 5. Launch Development Server
+Boot the Next.js development server:
+```bash
+npm run dev
+```
+Navigate to [http://localhost:3000](http://localhost:3000) in your browser.
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## ⚡ Deployment to Vercel
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This repository is optimized for instant deployment to Vercel:
+
+1. **Connect GitHub**: Push the repository code to your GitHub account.
+2. **Import Project**: Log into [Vercel Dashboard](https://vercel.com) and click **Add New > Project**, then import this repository.
+3. **Set Environment Variables**: Copy keys from `.env.example` and paste them into Vercel's **Environment Variables** settings panel (particularly `DATABASE_URL` if connecting a live Neon/PostgreSQL database, alongside AWS Cognito credentials).
+4. **Deploy**: Click **Deploy**. Vercel will automatically run `npm run build` and output a live SSL-secured production URL.
